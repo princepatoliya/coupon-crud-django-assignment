@@ -39,6 +39,7 @@ class CouponView(APIView, APIException):
     return Response(couponSerializeList.data, status=status.HTTP_200_OK)
 
   def patch(self, request, pk=None, format=None):
+    print("data: ", request.data.get("data"))
     couponData = Coupon.objects.get(id=pk)
     couponSerializeData = CouponSerializer(instance=couponData, data = request.data.get("data"), partial=True)
     couponSerializeData.is_valid(raise_exception=True)
